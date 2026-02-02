@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Undangan Pernikahan</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background:#fdf7f2;color:#333;text-align:center}
+section{padding:60px 20px}
+h1,h2{font-family:'Playfair Display',serif}
+.cover{
+height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+background:linear-gradient(135deg,#f7d9c4,#fff);
+}
+.cover h1{font-size:40px}
+.cover p{margin:10px 0;font-size:18px}
+.btn{margin-top:20px;padding:12px 30px;border:none;background:#cfa17a;color:white;border-radius:30px;font-size:16px;cursor:pointer}
+.card{background:white;margin:20px auto;padding:25px;border-radius:16px;max-width:500px;box-shadow:0 10px 30px rgba(0,0,0,.1)}
+.countdown{display:flex;justify-content:center;gap:15px;margin-top:15px}
+.time-box{background:#cfa17a;color:white;padding:10px 15px;border-radius:10px}
+.gallery img{width:100%;border-radius:12px;margin:10px 0}
+footer{padding:30px;font-size:14px;color:#777}
+audio{display:none}
+</style>
+</head>
+<body>
+
+<!-- 🎶 Music -->
+<audio id="music" autoplay loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
+</audio>
+
+<!-- 💍 Cover -->
+<section class="cover">
+  <h1>Rizky & Aulia</h1>
+  <p>Dengan penuh cinta, kami mengundang Anda</p>
+  <button class="btn" onclick="document.getElementById('main').scrollIntoView({behavior:'smooth'});document.getElementById('music').play()">Buka Undangan</button>
+</section>
+
+<div id="main">
+
+<!-- ⏳ Countdown -->
+<section>
+  <h2>Menuju Hari Bahagia</h2>
+  <div class="countdown" id="countdown"></div>
+</section>
+
+<!-- 📅 Detail Acara -->
+<section>
+  <div class="card">
+    <h2>Akad Nikah</h2>
+    <p>Minggu, 20 Juli 2026</p>
+    <p>Pukul 09.00 WIB</p>
+  </div>
+  <div class="card">
+    <h2>Resepsi</h2>
+    <p>Minggu, 20 Juli 2026</p>
+    <p>Pukul 11.00 WIB - selesai</p>
+  </div>
+</section>
+
+<!-- 📍 Lokasi -->
+<section>
+  <h2>Lokasi</h2>
+  <div class="card">
+    <p>Gedung Serbaguna, Medan</p>
+    <iframe 
+      src="https://www.google.com/maps?q=Medan&output=embed" 
+      width="100%" height="250" style="border:0;border-radius:12px;" allowfullscreen="">
+    </iframe>
+  </div>
+</section>
+
+<!-- 💕 Love Story -->
+<section>
+  <h2>Love Story</h2>
+  <div class="card">
+    <p><b>2022</b> - Pertama bertemu</p>
+    <p><b>2024</b> - Memutuskan bersama</p>
+    <p><b>2026</b> - Menikah 💍</p>
+  </div>
+</section>
+
+<!-- 📸 Galeri -->
+<section>
+  <h2>Galeri</h2>
+  <div class="gallery card">
+    <img src="https://picsum.photos/500/300?1">
+    <img src="https://picsum.photos/500/300?2">
+    <img src="https://picsum.photos/500/300?3">
+  </div>
+</section>
+
+<!-- ✅ RSVP -->
+<section>
+  <h2>Konfirmasi Kehadiran</h2>
+  <div class="card">
+    <form onsubmit="submitRSVP(event)">
+      <input type="text" placeholder="Nama" required style="width:90%;padding:10px;margin:8px;border-radius:8px;border:1px solid #ccc"><br>
+      <select required style="width:90%;padding:10px;margin:8px;border-radius:8px;border:1px solid #ccc">
+        <option value="">Konfirmasi Kehadiran</option>
+        <option>Hadir</option>
+        <option>Tidak Hadir</option>
+      </select><br>
+      <button class="btn">Kirim</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p>Terima kasih atas doa & restu Anda 🤍</p>
+</footer>
+
+</div>
+
+<script>
+// Countdown
+const targetDate = new Date("2026-07-20T09:00:00").getTime();
+const countdownEl = document.getElementById("countdown");
+
+setInterval(() => {
+  const now = new Date().getTime();
+  const diff = targetDate - now;
+
+  const days = Math.floor(diff / (1000*60*60*24));
+  const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+  const minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
+  const seconds = Math.floor((diff % (1000*60)) / 1000);
+
+  countdownEl.innerHTML = `
+    <div class="time-box">${days} Hari</div>
+    <div class="time-box">${hours} Jam</div>
+    <div class="time-box">${minutes} Menit</div>
+    <div class="time-box">${seconds} Detik</div>
+  `;
+}, 1000);
+
+// RSVP
+function submitRSVP(e){
+  e.preventDefault();
+  alert("Terima kasih! Konfirmasi kehadiran terkirim 💌");
+}
+</script>
+
+</body>
+</html>
